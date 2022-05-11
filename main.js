@@ -1,6 +1,4 @@
 const express = require('express');
-const req = require('express/lib/request');
-const res = require('express/lib/response');
 const path = require('path');
 // const ejs = require('ejs');
 const app = express();
@@ -10,13 +8,6 @@ const logger = (res, req, next) => {
     console.log('log deneme');
     next();
 }
-
-let sayfalar = [
-    { adres: '', content: 'index' },
-    { adres: 'index', content: 'index' },
-    { adres: 'about', content: 'about' },
-    { adres: 'contact', content: 'contact' }
-]
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -30,11 +21,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/:adres', (req, res) => {
-    const sendFile = sayfalar.find(sayfa => sayfa.adres == req.params.adres)
     console.log(req.params);
-    console.log(sendFile);
-    res.render(sendFile.content);
     console.log(req.ip);
+    res.render(req.params.adres);
 })
 
 app.listen(port, () => {

@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Catalog</title>
-    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <!-- https://fonts.google.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/templatemo-video-catalog.css">
-<!--
+<%- include ('partials/_header.ejs') -%>
 
-TemplateMo 552 Video Catalog
-
-https://templatemo.com/tm-552-video-catalog
-
--->
-</head>
 <body>
 	<div class="tm-page-wrap mx-auto">
 		<div class="position-relative">
@@ -49,7 +32,7 @@ https://templatemo.com/tm-552-video-catalog
                                                 <a class="nav-link tm-nav-link" href="/about">About <span class="sr-only">(current)</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link tm-nav-link" href="/contact">Contact</a>
+                                                <a class="nav-link tm-nav-link" href="/addphoto">Add Photo</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -178,13 +161,7 @@ https://templatemo.com/tm-552-video-catalog
                 </div>
             </div> <!-- row -->
 
-            <footer class="row pt-5">
-                <div class="col-12">
-                    <p class="text-right">Copyright 2020 The Video Catalog Company 
-                        
-                        - Designed by <a href="https://templatemo.com" rel="nofollow" target="_parent">TemplateMo</a></p>
-                </div>
-            </footer>
+            <%- include ('partials/_footer.ejs') -%>
 		</div>		
 	</div>
 
