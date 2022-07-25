@@ -1,31 +1,37 @@
 const express = require('express');
-const path = require('path');
-// const ejs = require('ejs');
 const app = express();
-const port = 3000;
+const mongoose = require('mongoose');
 
-const logger = (res, req, next) => {
-    console.log('log deneme');
-    next();
-}
+const Photo = require('./models/Photo');
+
+(function baglanti_deneme() {
+    mongoose.connect('mongodb://127.0.0.1:27017/pcat-db', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+        if (err) throw err;
+        console.log('veritabanına bağlantı başarılı');
+    });
+})();
+
+const port = process.argv[2] || 3000;
+const host = 'localhost';
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-// app.use(logger);
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-
-app.get('/', (req, res) => {
-    res.render('index');
-    console.log(req.url);
-    console.log(req.params);
+app.get('/', async (req, res) => {
+    const photos = await Photo.find({});
+    res.render('index', { photos });
 })
 
 app.get('/:adres', (req, res) => {
-    console.log(req.params);
-    console.log(req.ip);
     res.render(req.params.adres);
 })
 
-app.listen(port, () => {
-    console.log('bağlandı');
+app.post('/add', async (req, res) => {
+    console.log(req.body);
+    await Photo.create(req.body)
+    res.redirect('/');
 })
+
+app.listen(port, host, () => console.log(`${host}:${port} dinleniyor`))
