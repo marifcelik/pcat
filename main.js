@@ -25,6 +25,9 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/:adres', (req, res) => {
+    const adres = req.params.adres;
+    if (adres == 'index' || adres == 'photo')
+        res.redirect('/')
     res.render(req.params.adres);
 })
 
@@ -32,6 +35,11 @@ app.post('/add', async (req, res) => {
     console.log(req.body);
     await Photo.create(req.body)
     res.redirect('/');
+})
+
+app.get('/photo/:id', async (req, res) => {
+    let page = await Photo.findById(req.params.id)
+    res.render('photo', { data: page })
 })
 
 app.listen(port, host, () => console.log(`${host}:${port} dinleniyor`))
