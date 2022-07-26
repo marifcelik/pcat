@@ -1,0 +1,27 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marifcelik/pcat.git"
+  },
+  "author": "arif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marifcelik/pcat/issues"
+  },
+  "homepage": "https://github.com/marifcelik/pcat#readme",
+  "dependencies": {
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.3.3"
+  }
+}
