@@ -53,7 +53,10 @@
 									<a href="/edit/<%= data._id %>" class="btn btn-primary p-0 mb-4 tm-btn-animate tm-btn-download tm-icon-download"><span>Update Details</span></a>	
 								</div>	
 								<div class="text-center">
-									<button class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete Photo</span></button>	
+									<form action="/edit?_method=DELETE" method="post">
+										<input type="text" style="display: none;" name="id" value="<%= data._id %>">
+										<button class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download" onclick="return confirm('silmek istediğinize emin misiniz ?')"><span>Delete Photo</span></button>	
+									</form>
 								</div>								
 							</div>
 						</div>
