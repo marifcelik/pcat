@@ -1,0 +1,91 @@
+<%- include ('partials/_header.ejs') -%>
+
+                                    <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                                        <ul class="navbar-nav text-uppercase">
+                                            <li class="nav-item active">
+                                                <a class="nav-link tm-nav-link" href="/">Photos</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link tm-nav-link" href="/about">About</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link tm-nav-link" href="/addphoto">Add Photo</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="tm-welcome-container tm-fixed-header tm-fixed-header-1">
+				<div class="text-center">
+					<p class="pt-5 px-3 tm-welcome-text tm-welcome-text-2 mb-1 text-white mx-auto">Background image can be fixed. Content will simply slide over.</p>                	
+				</div>                
+            </div>
+
+			<!-- Header image -->
+            <div id="tm-fixed-header-bg"></div> 
+		</div>
+
+		<!-- Page content -->
+		<div class="container-fluid">
+			<div class="mx-auto tm-content-container">
+				<main>
+					<div class="row mb-5 pb-4">
+						<div class="col-12">
+							<img src="<%= data.image %>" alt="Image" id="imageSrc" class="img-fluid tm-catalog-item-img">
+						</div>
+					</div>
+                    <form id="add-form" action="/edit?_method=PUT" method="POST" class="tm-contact-form" enctype="multipart/form-data">
+					<div class="row pb-5">
+						<div class="col-xl-8 col-lg-7">
+							<!-- Video description -->
+                                <div class="form-group">
+                                  <input type="text" name="name" class="form-control rounded-0" placeholder="Name" required="" value="<%= data.name %>"/>
+                                </div>
+                                <div class="form-group">
+                                  <textarea rows="8" name="comment" class="form-control rounded-0" placeholder="Comment" required=""><%= data.comment %></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <input style="padding: 45px !important;" name="inputImg" accept="image/jpeg, image/png" class="form-control form-control-lg rounded-0" type="file" id="formFileLg" onchange="change()">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" style="display: none;" name="postid" value="<%= data._id %>">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-5">
+                                <!-- Share box -->
+                                <div class="tm-bg-gray tm-share-box">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary mb-4 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Update</span></button>
+                                    </div>	
+                                    <div class="text-center">
+                                        <a href="/photo/<%= data._id %>" class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Cancel</span></a>	
+                                    </div>								
+                                </div>
+                            </div>
+                        </div>
+                    </form>				
+				</main>
+
+                <%- include ('partials/_footer.ejs') -%>
+
+			</div> <!-- .tm-content-container -->
+		</div>
+	</div>
+
+	<script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script>
+        function change() {
+            const chosedFile = formFileLg.files[0]
+            const reader = new FileReader();
+            reader.addEventListener('load', () => imageSrc.setAttribute('src', reader.result))
+            reader.readAsDataURL(chosedFile);
+        }
+    </script>
+</>
+</html>
