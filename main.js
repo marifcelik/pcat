@@ -8,8 +8,8 @@ const app = express();
 const photoControl = require('./controllers/photoController');
 const pageControl = require('./controllers/pageController');
 
-const port = process.argv[2] || 3000;
-const host = 'localhost';
+const port = process.env.PORT || 3000;
+const host = '0.0.0.0';
 
 app.use(methodoverride('_method'))
 app.set('view engine', 'ejs');
@@ -22,7 +22,7 @@ app.use(fileupload());
     if (!fs.existsSync('public/uploads'))
         fs.mkdirSync('public/uploads');
 
-    mongoose.connect('mongodb://127.0.0.1:27017/pcat-db', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+    mongoose.connect('mongodb+srv://arif:123@cluster0.ibztmat.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         if (err) throw err;
         console.log('veritabanına bağlantı başarılı');
     });

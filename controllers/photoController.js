@@ -5,11 +5,7 @@ const Photo = require('../models/Photo');
 class photoController {
     async getAllPhotos(req, res) {
         let page = req.query.page || 1
-        let total = await Photo.find().countDocuments()
-
         const photos = await Photo.find({}).sort('-creationDate').skip((page - 1) * 5).limit(5);
-        console.log('sayfa', page);
-        console.log(photos);
         res.render('index', { photos });
     }
 
